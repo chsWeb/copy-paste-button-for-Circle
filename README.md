@@ -4,18 +4,18 @@ Everybody loves a warm welcome! This project provides a simple, customizable cod
 
 ## Features
 
-- **Easy to Use:** A single click on the "Copy Template" button copies a ready-to-use greeting message.
-- **Customizable:** Update the template with your own details such as your name, location, or fun fact.
+- **Easy to Use:** A single click copies a ready-to-use greeting message to the clipboard.
+- **Customizable:** Update the template with your own details and questions.
 - **Designed for Everyone:** Ideal for non-technical users wanting to engage with the community.
 
 ## How It Works
 
-When you add this snippet to your Circle post, the button becomes active. Clicking it automatically copies a formatted message template to your clipboard. You then simply paste it as a new comment and personalize it with your details.
+When you add this snippet to the HTML section in your Circle post settings, the button becomes active. Clicking it automatically copies a formatted message template to your clipboard. You then simply paste it as a new comment and personalize it with your details.
 
 ### What’s Included
 
 - **HTML:** Defines the structure of the button and message area.
-- **CSS:** Styles the layout and appearance of the button and wrapper.
+- **CSS:** Styles the layout and appearance of the button.
 - **JavaScript:** Handles the clipboard functionality so the template is copied instantly.
 
 ## Watch a Tutorial

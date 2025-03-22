@@ -25,46 +25,53 @@ Watch the video tutorial below for a step-by-step guide on how to implement [thi
 </a>
 
 ## Code Snippet
+Copy and paste the code below into the HTML enter field in your Circle Post > Settings.
 
 ```html
 <style>
-    /* Padding for the wrapper */
-    #idl-wrap {
-        padding: 24px 0;
-    }
-    /* Button styling inside #idl-wrap */
-    #idl-wrap #btn {
-        background: #080808;
-        color: #f5f5f5;
-        padding: 4px 12px;
-        cursor: pointer;
-        border-radius: 6px;
-        margin-top: 16px;
-    }
+  /* Padding for the wrapper */
+  #idl-wrap {
+    padding: 24px 0;
+  }
+
+  /* Button styling inside #idl-wrap */
+  #idl-wrap #btn {
+    background: #080808;
+    color: #f5f5f5;
+    padding: 4px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 16px;
+  }
 </style>
+
 <div id="idl-wrap">
-    <button id="btn">Copy Template</button>
-    <p id="msg" style="display: none; color: green;">Copied! Paste as a new comment below.</p>
+  <button id="btn">Copy Template</button>
+  <p id="msg" style="display: none; color: green;">
+    Copied! Paste as a new comment below.
+  </p>
 </div>
 
 <script>
-    document.getElementById('btn').addEventListener('click', function () {
-        const raw = `👋 **Your Name**:\u200B
+  document.getElementById('btn').addEventListener('click', function () {
+    const raw = `👋 **Your Name**:\u200B
 📍 **Location**:\u200B
 🎯 **My Favorite Animal is**:\u200B
 💡 **A fun fact about me**:\u200B`;
 
-        const template = raw
-            .split('\n')
-            .map(line => line.trim())
-            .join('\n');
+    const template = raw
+      .split('\n')
+      .map(line => line.trim())
+      .join('\n');
 
-        navigator.clipboard.writeText(template).then(() => {
-            const msg = document.getElementById('msg');
-            msg.style.display = 'inline';
-            setTimeout(() => msg.style.display = 'none', 4000);
-        });
+    navigator.clipboard.writeText(template).then(() => {
+      const msg = document.getElementById('msg');
+      msg.style.display = 'inline';
+      setTimeout(() => {
+        msg.style.display = 'none';
+      }, 4000);
     });
+  });
 </script>
 ```
 ## Have an Idea?

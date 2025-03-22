@@ -29,12 +29,12 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
 
 ```html
 <style>
-  /* Padding for the wrapper */
+  /* Space above and below button */
   #idl-wrap {
     padding: 24px 0;
   }
 
-  /* Button styling inside #idl-wrap */
+  /* Button Style */
   #idl-wrap #btn {
     background: #080808;
     color: #f5f5f5;
@@ -48,15 +48,15 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
 <div id="idl-wrap">
   <button id="btn">Copy Template</button>
   <p id="msg" style="display: none; color: green;">
-    Copied! Paste as a new comment below.
+    Copied! You're ready to paste as a new comment.
   </p>
 </div>
 
 <script>
   document.getElementById('btn').addEventListener('click', function () {
-    const raw = `👋 **Your Name**:\u200B
+    const raw = `👋 **Name**:\u200B
 📍 **Location**:\u200B
-🎯 **My Favorite Animal is**:\u200B
+🎯 **Why I Joined**:\u200B
 💡 **A fun fact about me**:\u200B`;
 
     const template = raw
@@ -69,7 +69,7 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
       msg.style.display = 'inline';
       setTimeout(() => {
         msg.style.display = 'none';
-      }, 4000);
+      }, 5000);
     });
   });
 </script>

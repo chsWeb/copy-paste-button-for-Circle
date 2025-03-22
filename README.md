@@ -18,7 +18,8 @@ When you add this snippet to your Circle post, the button becomes active. Clicki
 - **CSS:** Styles the layout and appearance of the button and wrapper.
 - **JavaScript:** Handles the clipboard functionality so the template is copied instantly.
 
-## Demo
+## Watch a Tutorial
+For a step-by-step guide on how to implement [this code](#code-snippet),check out the tutorial video below:
 <a href="https://youtu.be/yodagnrm4S8" target="_blank">
   <img src="https://img.youtube.com/vi/yodagnrm4S8/maxresdefault.jpg" alt="Watch the video" style="max-width:100%;">
 </a>

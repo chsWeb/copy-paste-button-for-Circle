@@ -19,8 +19,8 @@ When you add this snippet to your Circle post, the button becomes active. Clicki
 - **JavaScript:** Handles the clipboard functionality so the template is copied instantly.
 
 ## Demo
-<a href="https://youtu.be/yodagnrm4S8" target="_blank" rel="noopener noreferrer">
-  <img src="https://img.youtube.com/vi/yodagnrm4S8/0.jpg" alt="Watch the video">
+<a href="https://youtu.be/yodagnrm4S8" target="_blank">
+  <img src="https://img.youtube.com/vi/yodagnrm4S8/maxresdefault.jpg" alt="Watch the video" style="max-width:100%;">
 </a>
 
 ## Code Snippet

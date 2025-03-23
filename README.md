@@ -29,13 +29,10 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
 
 ```html
 <style>
-  /* Space above and below button */
-  #idl-wrap {
+  .idl-wrap {
     padding: 24px 0;
   }
-
-  /* Button Style */
-  #idl-wrap #btn {
+  .idl-wrap .btn {
     background: #080808;
     color: #f5f5f5;
     padding: 4px 12px;
@@ -45,31 +42,36 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
   }
 </style>
 
-<div id="idl-wrap">
-  <button id="btn">Copy Template</button>
-  <p id="msg" style="display: none; color: green;">
-    Copied! You're ready to paste as a new comment.
+<div class="idl-wrap">
+  <button class="btn">Copy Template</button>
+  <p class="msg" style="display: none; color: green;">
+    Copied! Paste as a new comment below.
   </p>
 </div>
 
+<!-- You can include multiple instances of the above block on your page -->
+
 <script>
-  document.getElementById('btn').addEventListener('click', function () {
-    const raw = `👋 **Name**:\u200B
-📍 **Location**:\u200B
-🎯 **Why I Joined**:\u200B
-💡 **A fun fact about me**:\u200B`;
+  // Loop over each instance of the .idl-wrap container
+  document.querySelectorAll('.idl-wrap').forEach(container => {
+    const btn = container.querySelector('.btn');
+    const msg = container.querySelector('.msg');
 
-    const template = raw
-      .split('\n')
-      .map(line => line.trim())
-      .join('\n');
+    btn.addEventListener('click', function () {
+      const raw = `👋 **Your Name**:\u200B
+    📍 **Location**:\u200B
+    🎯 **My Favorite Animal is**:\u200B
+    💡 **A fun fact about me**:\u200B`;
 
-    navigator.clipboard.writeText(template).then(() => {
-      const msg = document.getElementById('msg');
-      msg.style.display = 'inline';
-      setTimeout(() => {
-        msg.style.display = 'none';
-      }, 5000);
+      const template = raw
+        .split('\n')
+        .map(line => line.trim())
+        .join('\n');
+
+      navigator.clipboard.writeText(template).then(() => {
+        msg.style.display = 'inline';
+        setTimeout(() => msg.style.display = 'none', 4000);
+      });
     });
   });
 </script>

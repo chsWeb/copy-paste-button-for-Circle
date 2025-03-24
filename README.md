@@ -39,6 +39,7 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
     cursor: pointer;
     border-radius: 6px;
     margin-top: 16px;
+    line-height: 1em;
   }
 </style>
 

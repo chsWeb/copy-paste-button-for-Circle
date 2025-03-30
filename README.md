@@ -32,6 +32,7 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
   .idl-wrap {
     padding: 24px 0;
   }
+  /* Desktop button styles */
   .idl-wrap .btn {
     background: #080808;
     color: #f5f5f5;
@@ -41,38 +42,144 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
     margin-top: 16px;
     line-height: 1em;
   }
+  
+  /* Touch device button styles */
+  @media (hover: none) and (pointer: coarse) {
+    .idl-wrap .btn {
+      padding: 12px 20px;
+      font-size: 1.2em;
+      border-radius: 8px;
+    }
+  }
 </style>
 
 <div class="idl-wrap">
   <button class="btn">Copy Template</button>
-  <p class="msg" style="display: none; color: green;">
-    Copied! Paste as a new comment below.
-  </p>
+  <p class="msg" style="display: none; color: green;">Copied! Paste as a new comment below.</p>
 </div>
 
-<!-- You can include multiple instances of the above block on your page -->
-
 <script>
-  // Loop over each instance of the .idl-wrap container
+  // Define your template fields in one place.
+  const fields = [
+    { icon: '👋', label: 'Your Name:' },
+    { icon: '📍', label: 'Location:' },
+    { icon: '🎯', label: 'My Favorite Animal is:' },
+    { icon: '💡', label: 'A fun fact about me:' }
+  ];
+
+  // Generate the rich HTML version for desktop.
+  // Each field is output as a single paragraph (<p>) with:
+  // - the icon,
+  // - the label in bold (<strong>), and then
+  // - a non‑breaking space and a zero‑width space (&nbsp;&#8203;) outside the <strong> tag.
+  const richTemplate = fields.map(field =>
+    `<p>${field.icon} <strong>${field.label}</strong>&nbsp;&#8203;</p>`
+  ).join('\n');
+
+  // Generate the plain text version for mobile.
+  // Each field is a single line.
+  const plainTemplate = fields.map(field =>
+    `${field.icon} ${field.label}`
+  ).join('\n');
+
+  // Utility: Detect mobile devices.
+  function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  }
+
+  // Fallback function using a hidden textarea.
+  function fallbackCopyText(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.top = '0';
+    textArea.style.left = '-9999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    let successful = false;
+    try {
+      successful = document.execCommand('copy');
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+    }
+    document.body.removeChild(textArea);
+    return successful;
+  }
+
+  function copyTemplate(msg) {
+    // Helper to show the confirmation message.
+    function showMsg(msgElem) {
+      msgElem.style.display = 'inline';
+      setTimeout(() => { msgElem.style.display = 'none'; }, 4000);
+    }
+
+    // Use plain text on mobile; use rich HTML on desktop.
+    if (isMobileDevice()) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(plainTemplate)
+          .then(() => showMsg(msg))
+          .catch(err => {
+            console.error('Clipboard.writeText failed:', err);
+            if (fallbackCopyText(plainTemplate)) showMsg(msg);
+          });
+      } else {
+        if (fallbackCopyText(plainTemplate)) showMsg(msg);
+      }
+    } else {
+      // Desktop: Try using Clipboard API with HTML support.
+      if (navigator.clipboard && navigator.clipboard.write) {
+        const blobHtml = new Blob([richTemplate], { type: 'text/html' });
+        const blobPlain = new Blob([plainTemplate], { type: 'text/plain' });
+        const data = new ClipboardItem({
+          'text/html': blobHtml,
+          'text/plain': blobPlain
+        });
+        navigator.clipboard.write([data])
+          .then(() => showMsg(msg))
+          .catch(err => {
+            console.error('Clipboard.write failed:', err);
+            // Fallback to plain text.
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(plainTemplate)
+                .then(() => showMsg(msg))
+                .catch(err => {
+                  console.error('Clipboard.writeText failed:', err);
+                  if (fallbackCopyText(plainTemplate)) showMsg(msg);
+                });
+            } else {
+              if (fallbackCopyText(plainTemplate)) showMsg(msg);
+            }
+          });
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(plainTemplate)
+          .then(() => showMsg(msg))
+          .catch(err => {
+            if (fallbackCopyText(plainTemplate)) showMsg(msg);
+          });
+      } else {
+        if (fallbackCopyText(plainTemplate)) showMsg(msg);
+      }
+    }
+  }
+
+  // Attach event listeners for each instance.
   document.querySelectorAll('.idl-wrap').forEach(container => {
     const btn = container.querySelector('.btn');
     const msg = container.querySelector('.msg');
 
-    btn.addEventListener('click', function () {
-      const raw = `👋 **Your Name**:\u200B
-    📍 **Location**:\u200B
-    🎯 **My Favorite Animal is**:\u200B
-    💡 **A fun fact about me**:\u200B`;
-
-      const template = raw
-        .split('\n')
-        .map(line => line.trim())
-        .join('\n');
-
-      navigator.clipboard.writeText(template).then(() => {
-        msg.style.display = 'inline';
-        setTimeout(() => msg.style.display = 'none', 4000);
-      });
+    let touchTriggered = false;
+    btn.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      touchTriggered = true;
+      copyTemplate(msg);
+    });
+    btn.addEventListener('click', function(e) {
+      if (touchTriggered) {
+        touchTriggered = false;
+        return;
+      }
+      copyTemplate(msg);
     });
   });
 </script>

@@ -67,7 +67,7 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
     { icon: "🎯", label: "What's My Favorite Color:" },
     { icon: "💡", label: "A fun fact about me:" }
   ];
-
+  // ** DO NOT EDIT ANYTHING BELOW THIS LINE **
   // Generate the rich HTML version for desktop.
   // Each field is output as a single paragraph (<p>) with:
   // - the icon,

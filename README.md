@@ -62,10 +62,10 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
 <script>
   // Define your template fields in one place.
   const fields = [
-    { icon: '👋', label: "Your Name:" },
-    { icon: '📍', label: "Location:" },
-    { icon: '🎯', label: "What's My Favorite Color:" },
-    { icon: '💡', label: "A fun fact about me:" }
+    { icon: "👋", label: "Your Name:" },
+    { icon: "📍", label: "Location:" },
+    { icon: "🎯", label: "What's My Favorite Color:" },
+    { icon: "💡", label: "A fun fact about me:" }
   ];
 
   // Generate the rich HTML version for desktop.

@@ -26,6 +26,7 @@ Watch the video tutorial below for a step-by-step guide on how to implement [thi
 
 ## Code Snippet
 Copy and paste the code below into the HTML enter field in your Circle Post > Settings.
+- **IMPORTANT:** If you use apostrophes in your formatted message, you must put a \ before the apostrophe (‘), e.g., What\’s Your Name?
 
 ```html
 <style>
@@ -61,10 +62,10 @@ Copy and paste the code below into the HTML enter field in your Circle Post > Se
 <script>
   // Define your template fields in one place.
   const fields = [
-    { icon: '👋', label: 'Your Name:' },
-    { icon: '📍', label: 'Location:' },
-    { icon: '🎯', label: 'My Favorite Animal is:' },
-    { icon: '💡', label: 'A fun fact about me:' }
+    { icon: '👋', label: "Your Name:" },
+    { icon: '📍', label: "Location:" },
+    { icon: '🎯', label: "What's My Favorite Color:" },
+    { icon: '💡', label: "A fun fact about me:" }
   ];
 
   // Generate the rich HTML version for desktop.
